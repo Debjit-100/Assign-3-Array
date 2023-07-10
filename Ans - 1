@@ -1,0 +1,51 @@
+To find three integers in the given array nums such that their sum is closest to the target, we can use a two-pointer approach. The idea is to iterate over each element in nums and for each element, use two pointers to find the remaining two elements such that their sum is closest to the target.
+
+Here's a step-by-step approach to solve this problem:
+
+Sort the nums array in non-decreasing order.
+
+Initialize a variable closest_sum to store the closest sum found so far. Set it to a large value initially.
+
+Iterate over each element num in the nums array up to the second-to-last element.
+
+Initialize two pointers, left and right, as the next element and the last element in the array, respectively.
+
+While left is less than right, do the following:
+
+Calculate the sum of the three elements: sum = num + nums[left] + nums[right].
+Check if the absolute difference between the current sum and the target is less than the absolute difference between the closest_sum and the target.
+If the current sum is closer to the target, update closest_sum with the current sum.
+If the current sum is greater than the target, decrement right by 1 to decrease the sum.
+If the current sum is less than the target, increment left by 1 to increase the sum.
+After the loop finishes, closest_sum will contain the sum that is closest to the target.
+
+Return closest_sum as the result.
+
+Here's the implementation in Python:
+
+
+def threeSumClosest(nums, target):
+    nums.sort()
+    closest_sum = float('inf')
+    for i in range(len(nums) - 2):
+        left = i + 1
+        right = len(nums) - 1
+        while left < right:
+            curr_sum = nums[i] + nums[left] + nums[right]
+            if abs(curr_sum - target) < abs(closest_sum - target):
+                closest_sum = curr_sum
+            if curr_sum > target:
+                right -= 1
+            elif curr_sum < target:
+                left += 1
+            else:
+                return closest_sum
+    return closest_sum
+Let's test the function with the given example:
+
+
+nums = [-1, 2, 1, -4]
+target = 1
+result = threeSumClosest(nums, target)
+print(result)  # Output: 2
+The function returns 2, which is the correct output for the given example. The sum that is closest to the target is 2, which is achieved by adding -1, 2, and 1 from the nums array.
