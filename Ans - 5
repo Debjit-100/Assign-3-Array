@@ -1,0 +1,29 @@
+To find the element that appears only once in the given array nums, while all other elements appear twice, we can utilize the XOR (^) operator. XORing a number with itself results in 0, so when we XOR all the elements in the array, the elements that appear twice will cancel each other out, and the remaining element will be the one that appears only once.
+
+Here's a step-by-step approach to solve this problem:
+
+Initialize a variable result to 0.
+
+Iterate over each element num in the nums array.
+
+XOR num with the result variable and store the result back in result.
+
+After the loop finishes, result will contain the element that appears only once.
+
+Return result as the output.
+
+Here's the implementation in Python:
+
+
+def singleNumber(nums):
+    result = 0
+    for num in nums:
+        result ^= num
+    return result
+Let's test the function with the given example:
+
+
+nums = [2, 2, 1]
+result = singleNumber(nums)
+print(result)  # Output: 1
+The function returns 1, which is the correct output for the given example. In the nums array, the element 1 appears only once, while the element 2 appears twice. Therefore, the function correctly identifies the single element as 1.
