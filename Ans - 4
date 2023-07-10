@@ -1,0 +1,41 @@
+To increment a large integer represented as an array of digits, we can start from the least significant digit and perform the following steps:
+
+Initialize a carry variable as 1.
+
+Iterate over the digits in reverse order.
+
+Add the carry to the current digit.
+
+If the sum is less than 10, update the current digit and set the carry to 0.
+
+If the sum is equal to 10, update the current digit to 0 and set the carry to 1.
+
+After the loop finishes, if the carry is still 1, it means a new digit needs to be added at the most significant position. Append 1 to the digits array.
+
+Reverse the digits array to restore the correct order.
+
+Return the modified digits array.
+
+Here's the implementation in Python:
+
+
+def plusOne(digits):
+    carry = 1
+    for i in range(len(digits)-1, -1, -1):
+        digits[i] += carry
+        if digits[i] < 10:
+            carry = 0
+            break
+        digits[i] = 0
+
+    if carry == 1:
+        digits.insert(0, 1)
+
+    return digits
+Let's test the function with the given example:
+
+
+digits = [1, 2, 3]
+result = plusOne(digits)
+print(result)  # Output: [1, 2, 4]
+The function returns [1, 2, 4], which is the correct output for the given example. The integer represented by the input array [1, 2, 3] is incremented by one, resulting in the array [1, 2, 4].
